@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/order")
 @RequiredArgsConstructor
 public class OrderController {
-
     private final OrderService orderService;
+    @GetMapping("/health-check")
+    public ResponseEntity<String> healthCheck(){
+        return ResponseEntity.ok("Working");
+    }
 
     @PostMapping("/add-order")
     public ResponseEntity<String> addOrder(@RequestBody OrderRequest orderRequest){

@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    @GetMapping("/health-check")
+    public ResponseEntity<String> healtCheck(){
+        return ResponseEntity.ok("Working");
+    }
     @PostMapping("/save")
     public ResponseEntity<UserDto> createUser(@RequestBody UserEnt userEnt) {
         return ResponseEntity.ok(userService.createUser(userEnt));
